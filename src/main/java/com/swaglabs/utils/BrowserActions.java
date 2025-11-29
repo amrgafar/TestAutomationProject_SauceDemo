@@ -17,5 +17,13 @@ public class BrowserActions {
         return driver.getCurrentUrl();
     }
 
+    public static String getPageTitle(WebDriver driver){
+        return driver.getTitle();
+    }
+
+    public static void refreshPage(WebDriver driver){
+        driver.navigate().refresh();
+    }
+
 
 }

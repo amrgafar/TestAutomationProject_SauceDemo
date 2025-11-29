@@ -1,7 +1,9 @@
 package com.swaglabs.pages;
 
 import com.swaglabs.utils.BrowserActions;
+import com.swaglabs.utils.CustomSoftAssertion;
 import com.swaglabs.utils.ElementActions;
+import com.swaglabs.utils.Validations;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -50,13 +52,23 @@ public class LoginPage {
 
 
     //Validations
-    public LoginPage assertSuccessfulLogin(){
-        Assert.assertEquals(BrowserActions.getCurrentURL(driver),"https://www.saucedemo.com/inventory.html");
+    public LoginPage assertLoginPageURL(){
+        CustomSoftAssertion.softAssertion.assertEquals(BrowserActions.getCurrentURL(driver),"https://www.saucedemo.com/inventory.html");
+        return this;
+    }
+
+    public LoginPage assertLoginPageTitle(){
+        CustomSoftAssertion.softAssertion.assertEquals(BrowserActions.getPageTitle(driver),"Swag Labs");
+        return this;
+    }
+
+    public LoginPage assertSuccessfulLoginSoft(){
+        assertLoginPageURL().assertLoginPageTitle();
         return this;
     }
 
     public LoginPage assertUnsuccessfulLogin(){
-        Assert.assertEquals(getErrorMessage(),"Epic sadface: Sorry, this user has been locked out.");
+        Validations.validateEquals(getErrorMessage(),"Epic sadface: Sorry, this user has been locked out.","Error Message");
         return this;
     }
 
