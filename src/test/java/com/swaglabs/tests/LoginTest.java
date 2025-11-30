@@ -2,12 +2,9 @@ package com.swaglabs.tests;
 
 import com.swaglabs.drivers.DriverManager;
 import com.swaglabs.pages.LoginPage;
+import com.swaglabs.utils.BrowserActions;
 import com.swaglabs.utils.CustomSoftAssertion;
-import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -38,7 +35,7 @@ public class LoginTest {
 
     @AfterMethod
      public void tearDown(){
-        driver.quit();
+        BrowserActions.closeBrowser(driver);
         CustomSoftAssertion.customAssertAll();
     }
 
