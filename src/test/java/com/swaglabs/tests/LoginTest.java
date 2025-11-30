@@ -1,5 +1,6 @@
 package com.swaglabs.tests;
 
+import com.swaglabs.drivers.DriverManager;
 import com.swaglabs.pages.LoginPage;
 import com.swaglabs.utils.CustomSoftAssertion;
 import org.openqa.selenium.PageLoadStrategy;
@@ -31,11 +32,8 @@ public class LoginTest {
     //Configurations
     @BeforeMethod
     void setUp(){
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("start-maximized");
-        options.setPageLoadStrategy(PageLoadStrategy.NORMAL); // it substitute implicit wait
-        driver = new ChromeDriver();
-        new LoginPage(driver).navigateToLoginPage();
+        driver = DriverManager.createInstance("Chrome");
+        new LoginPage(DriverManager.getDriver()).navigateToLoginPage();
     }
 
     @AfterMethod
